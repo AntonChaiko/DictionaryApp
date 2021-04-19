@@ -38,6 +38,7 @@ public class TranslateFragment extends Fragment implements View.OnClickListener 
     Context context;
 
     public TranslateFragment() {
+
     }
 
     @Override

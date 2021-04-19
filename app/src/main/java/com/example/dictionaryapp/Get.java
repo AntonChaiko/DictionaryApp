@@ -9,8 +9,6 @@ public class Get extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-
-
         throw new UnsupportedOperationException("Not yet implemented");
     }
 }

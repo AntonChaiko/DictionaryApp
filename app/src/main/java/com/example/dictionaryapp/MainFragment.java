@@ -1,8 +1,13 @@
 package com.example.dictionaryapp;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,10 +19,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 
 
 public class MainFragment extends Fragment {
@@ -53,8 +58,14 @@ public class MainFragment extends Fragment {
 
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
         recyclerView.setAdapter(adapter);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+
+        createNotificationChannel();
+        notificationManager = NotificationManagerCompat.from(getActivity());
+//        Cursor cursor = getAllData();
+        getNotification(myView);
 
         return myView;
     }
@@ -81,6 +92,40 @@ public class MainFragment extends Fragment {
     };
 
 
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String name = "ANTON";
+            String description = "best of the best";
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, NotificationManager.IMPORTANCE_HIGH);
+            channel.setDescription(description);
+            NotificationManager notificationManager = getActivity().getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+
+        }
+    }
+
+    public void getNotification(View v) {
+
+        Handler handler = new Handler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (getAllData().getCount() != 0) {
+
+                    Cursor c = getAllData();
+                    c.moveToPosition(0);
+                    String source = c.getString(c.getColumnIndex("SOURCE"));
+                    String translate = c.getString(c.getColumnIndex("TRANSLATE"));
+                    notificationManager.notify(1, setNotificationBuilder(source, translate).build());
+                    adapter.swapCursor(c);
+                    handler.postDelayed(this, 5000);
+                }
+
+
+            }
+        });
+    }
+
     public NotificationCompat.Builder setNotificationBuilder(String source, String translate) {
         return new NotificationCompat.Builder(getActivity(), CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_alert)
@@ -89,8 +134,5 @@ public class MainFragment extends Fragment {
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE);
     }
-
-
-
 
 }
