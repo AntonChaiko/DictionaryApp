@@ -6,4 +6,6 @@
     <string name="favorites">favorites</string>
     <string name="source">Source: </string>
     <string name="translate">Translate: </string>
+    <string name="main_menu">Main menu</string>
+    <string name="translate_menu">Translate menu</string>
 </resources>

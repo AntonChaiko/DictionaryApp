@@ -2,6 +2,8 @@ package com.example.dictionaryapp;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -51,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
     public Call<TranslateData> getData(String string) {
         OkHttpClient okHttpClient = new OkHttpClient().newBuilder().build();
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.mymemory.translated.net/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -120,5 +121,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, DatabaseActivity.class);
         startActivity(intent);
     }
+
 
 }
