@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/page_2"
+        android:enabled="true"
+        android:icon="@drawable/baseline_dns_24"
+        android:title="@string/main_menu"/>
+    <item
         android:id="@+id/page_1"
         android:enabled="true"
         android:icon="@drawable/baseline_translate_24"
         android:title="@string/translate_menu"/>
     <item
-        android:id="@+id/page_2"
+        android:id="@+id/page_3"
         android:enabled="true"
-        android:icon="@drawable/baseline_dns_24"
-        android:title="@string/main_menu"/>
+        android:icon="@drawable/baseline_lightbulb_24"
+        android:title="@string/learned_words"/>
 </menu>

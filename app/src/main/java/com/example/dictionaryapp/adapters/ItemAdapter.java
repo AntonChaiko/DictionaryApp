@@ -1,8 +1,6 @@
-package com.example.dictionaryapp;
+package com.example.dictionaryapp.adapters;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.location.GnssAntennaInfo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.dictionaryapp.model.TranslateData;
+import com.example.dictionaryapp.R;
 
 import java.util.ArrayList;
 
@@ -22,7 +20,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     private ArrayList<String> sources;
     private ArrayList<String> translates;
 
-    interface Listener {
+    public interface Listener {
         void onClick(int position);
     }
 
@@ -30,7 +28,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         this.listener = listener;
     }
 
-    ItemAdapter(Context context, ArrayList<String> sources, ArrayList<String> translates) {
+    public ItemAdapter(Context context, ArrayList<String> sources, ArrayList<String> translates) {
         this.sources = sources;
         this.translates = translates;
     }

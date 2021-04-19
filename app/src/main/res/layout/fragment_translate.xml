@@ -4,11 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".TranslateFragment">
+    tools:context=".fragments.TranslateFragment">
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="write text here" />
 
@@ -21,7 +21,6 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
         android:text="@string/get_translate" />
 
     <androidx.recyclerview.widget.RecyclerView

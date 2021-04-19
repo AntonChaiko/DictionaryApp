@@ -1,12 +1,11 @@
-package com.example.dictionaryapp;
+package com.example.dictionaryapp.fragments;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.Context;
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -23,6 +22,10 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.dictionaryapp.R;
+import com.example.dictionaryapp.TranslateDatabaseHelper;
+import com.example.dictionaryapp.adapters.ResultAdapter;
 
 
 public class MainFragment extends Fragment {
@@ -64,7 +67,7 @@ public class MainFragment extends Fragment {
 
         createNotificationChannel();
         notificationManager = NotificationManagerCompat.from(getActivity());
-//        Cursor cursor = getAllData();
+
         getNotification(myView);
 
         return myView;
@@ -108,20 +111,36 @@ public class MainFragment extends Fragment {
 
         Handler handler = new Handler();
         handler.post(new Runnable() {
+            int counter = 0;
+
             @Override
             public void run() {
+                adapter.swapCursor(getAllData());
+
                 if (getAllData().getCount() != 0) {
 
                     Cursor c = getAllData();
+
                     c.moveToPosition(0);
                     String source = c.getString(c.getColumnIndex("SOURCE"));
                     String translate = c.getString(c.getColumnIndex("TRANSLATE"));
+
+                    if (counter == 3) {
+                            ContentValues cv = new ContentValues();
+                            cv.put("SOURCE", source);
+                            cv.put("TRANSLATE", translate);
+                            cv.put("FAVORITE", 1);
+                            db.insert("LEARNED", null, cv);
+
+                        long id = c.getLong(c.getColumnIndex("_id"));
+                        removeItem(id);
+                    }
+
+
                     notificationManager.notify(1, setNotificationBuilder(source, translate).build());
-                    adapter.swapCursor(c);
+                    counter++;
                     handler.postDelayed(this, 5000);
                 }
-
-
             }
         });
     }

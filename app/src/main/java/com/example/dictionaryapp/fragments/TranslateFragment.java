@@ -1,4 +1,4 @@
-package com.example.dictionaryapp;
+package com.example.dictionaryapp.fragments;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -15,10 +15,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import com.example.dictionaryapp.model.TranslateData;
-import com.example.dictionaryapp.model.TranslateServiceApi;
+import com.example.dictionaryapp.R;
+import com.example.dictionaryapp.TranslateDatabaseHelper;
+import com.example.dictionaryapp.adapters.ItemAdapter;
+import com.example.dictionaryapp.api.TranslateData;
+import com.example.dictionaryapp.api.TranslateServiceApi;
 
 import java.util.ArrayList;
 

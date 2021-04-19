@@ -8,6 +8,10 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+
+import com.example.dictionaryapp.fragments.LearnedWordsFragment;
+import com.example.dictionaryapp.fragments.MainFragment;
+import com.example.dictionaryapp.fragments.TranslateFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
@@ -35,10 +39,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         Intent intent = null;
         switch (id) {
             case R.id.page_1:
-                fragment = new MainFragment();
+                fragment = new TranslateFragment();
                 break;
             case R.id.page_2:
-                fragment = new TranslateFragment();
+                fragment = new MainFragment();
+                break;
+            case R.id.page_3:
+                fragment = new LearnedWordsFragment();
                 break;
         }
         if (fragment != null) {

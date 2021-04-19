@@ -1,4 +1,4 @@
-package com.example.dictionaryapp.model;
+package com.example.dictionaryapp.api;
 
 import java.util.ArrayList;
 

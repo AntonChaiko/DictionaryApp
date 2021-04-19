@@ -5,12 +5,22 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 
 public class TranslateDatabaseHelper extends SQLiteOpenHelper {
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
     private static final String DB_NAME = "DICTIONARY";
-
+public static final String CREATE_TABLE_DICTIONARY = "CREATE TABLE  DICTIONARY (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
+        + "SOURCE TEXT, "
+        + "TRANSLATE TEXT, "
+        + "FAVORITE NUMERIC"
+        + ");";
+public static final String CREATE_TABLE_LEARNED = "CREATE TABLE IF NOT EXISTS LEARNED (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
+        + "SOURCE TEXT, "
+        + "TRANSLATE TEXT, "
+        + "FAVORITE NUMERIC"
+        + ");";
     public TranslateDatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
@@ -18,11 +28,9 @@ public class TranslateDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE DICTIONARY (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + "SOURCE TEXT, "
-                + "TRANSLATE TEXT, "
-                + "FAVORITE NUMERIC"
-                + ");");
+        db.execSQL(CREATE_TABLE_DICTIONARY);
+        db.execSQL(CREATE_TABLE_LEARNED);
+
     }
 
     public void insertTranslate(SQLiteDatabase db, String source, String translate, int favorite) {
@@ -36,6 +44,8 @@ public class TranslateDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL(CREATE_TABLE_LEARNED);
+//        onCreate(db);
     }
+
 }

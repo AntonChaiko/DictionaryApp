@@ -1,18 +1,16 @@
-package com.example.dictionaryapp;
+package com.example.dictionaryapp.adapters;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.core.app.NotificationCompat;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.dictionaryapp.R;
 
 public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ViewHolder> {
     public static final String CHANNEL_ID = "channelId";
@@ -29,7 +27,8 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         CardView cv = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.card_result, parent, false);
-        return new ViewHolder(cv);
+        ViewHolder vh = new ViewHolder(cv);
+        return vh;
     }
 
     @Override
@@ -52,6 +51,12 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ViewHolder
         textViewSource.setText(source);
         textViewTranslate.setText(translate);
 
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+//        return super.getItemViewType(position);
     }
 
     @Override

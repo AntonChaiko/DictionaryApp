@@ -1,4 +1,4 @@
-package com.example.dictionaryapp.model;
+package com.example.dictionaryapp.api;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
