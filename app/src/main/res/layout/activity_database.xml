@@ -11,11 +11,5 @@
         android:onClick="getNotification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/translate_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="vertical">
 
-    </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

@@ -3,15 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TranslateFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".TranslateFragment">
+
     <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="write text here" />
+
+    <TextView
+        android:id="@+id/text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:text="@string/get_translate" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/translate_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="write text here"/>
-    <Button
-        android:text="TRANSLATE!"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="16dp"
+        android:scrollbars="vertical">
 
+    </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>
